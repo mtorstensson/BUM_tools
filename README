@@ -1,0 +1,43 @@
+Filerna i den här mappen förklaras här:
+
+==> asc2grib.sh <==
+Detta körskript läser in ascii filer och skriver ut grib-filer. 
+Det ändrar också enheten från g/år till Gg/år och ändrar från
+att mäta molekylmassa till ämnesmassa.
+Se även asc2grib.F i MATCH-koden för koden till asc2grib.x
+Skrivet av Martin Torstensson 2011-02-18
+
+==> fetch_hirlam.py <==
+Ett skript för att hämta det som behövs från hirlam för att kunna köra BUM
+på gimle utan att flytta ~1T data. Det kräver en pythonpath som inkluderar FOU:s 
+pygrib och pydate. Det förutsätter också att kataloger på formen YYYYMM redan finns.
+Skrivet av Martin Torstensson 2011-02-18
+
+==> make_fys_files.sh <==
+Ett skript för att generera fysiografi-filer för maskorna till BUM-körningen
+Det kräver tillgång till grundfysiografifilerna HOMEsei_sum_fysio_newgrib_0001000000+000H00M och 
+HOMEsei_win_fysio_newgrib_0001000000+000H00M. Dessa skall ligga i $fysorg
+mask.F finns i matchkoden.
+Skriptet är skrivet av Martin Torstensson 2011-04
+
+==> mall.mall <==
+Ett mall-skript som hör ihop med run_emis.ksh
+
+==> mask_mall.mall <==
+Ett mall-skript som hör ihop med run_emis.ksh
+
+==> punkt.py <==
+Ett skript för att översätta punktkällorna från RT90 till SWEREF99
+Det kräver att proj4 är installerat, mer exakt att cs2cs, som är ett 
+verktyg som hör till proj4 är installerat.
+Skriptet är skrivet av Martin Torstensson 2011-04
+
+==> rt2sweref.py <==
+Ett skript för att konvertera lokala edb:er från RT90 till SWEREF99 
+Skriptet är skrivet av Martin Torstensson 2011-04
+Det är väldigt inspirerat (plagierat) av ett av David Segerssons skript
+för konvertering av ascii-grid-filer.
+
+==> run_emis_nox.ksh <==
+Ett skript för att plotta upp resultatet av maskkörningarna. 
+Skrivet av Camilla Andersson
