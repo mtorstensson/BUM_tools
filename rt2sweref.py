@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: iso-8859-15 -*-
 # Ett skript för att konvertera lokala edb:er från RT90 till SWEREF99 
 # Skriptet är skrivet av Martin Torstensson 2011-04
 # Det är väldigt inspirerat (plagierat) av ett av David Segerssons skript
 # för konvertering av ascii-grid-filer.
 
-import tempfile, os, numpy, math, subprocess, sys
+import os, numpy, math, subprocess, sys
 
 proj4Dict={
     'EMEP50km':"+proj=stere +lat_0=90 +lat_ts=60 +lon_0=-32 +k=1 +x_0=8 +y_0=110 +a=127.4",
@@ -70,8 +70,11 @@ def transform(x,y,fromProj, toProj):
     return resX, resY
 
 def main():
-    infile='umea_out'
-    outfile='umea_sweref'
+    infile=sys.argv[1]
+    if len(sys.argv) > 2:
+	outfile=sys.argv[2]
+    else:
+	outfile=infile+'_SWEREF'
     rf=open(infile,'r')
     wf=open(outfile,'w')
     rt_x=[]
