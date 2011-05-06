@@ -100,7 +100,15 @@ def main():
         elif len(line.split())==0:
             wf.write('NAME "'+name+'"\n')
             wf.write('INFO "'+info+'"\n'+text)
-            swe_x,swe_y = transform(rt_x,rt_y,fromProj=proj4Dict['RT9025gonV'],toProj=proj4Dict['SWEREF99TM'])
+	    if len(rt_x) < 150:
+		swe_x,swe_y = transform(rt_x,rt_y,fromProj=proj4Dict['RT9025gonV'],toProj=proj4Dict['SWEREF99TM'])
+	    else:
+		swe_x=[]
+		swe_y=[]
+		for i in range(0,len(rt_x),100):
+		    temp_x,temp_y = transform(rt_x[i:i+100],rt_y[i:i+100],fromProj=proj4Dict['RT9025gonV'],toProj=proj4Dict['SWEREF99TM'])
+		    swe_x.extend(temp_x)
+		    swe_y.extend(temp_y)
             for i in range(len(swe_x)):
                 wf.write('X'+str(i)+'  '+str(int(round(swe_x[i],0)))+' Y'+str(i)+'  '+str(int(round(swe_y[i],0)))+'\n')
             wf.write('\n')
