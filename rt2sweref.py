@@ -81,20 +81,25 @@ def main():
     rt_y=[]
     text=''
     for line in rf:
-        if 'NAME ' in line.upper() or 'INFO ' in line.upper():
+        if 'NAME ' in line.upper():
             # NAME "389191 389219"
             try:
-                [start_id,stop_id]=line.split('"')[1].split()
+                name=line.split('"')[1]
             except:
                 print line
             # Fixa start_id och stop_id
+        elif 'INFO ' in line.upper():
+            try:
+                info=line.split('"')[1]
+            except:
+                print line
         elif 'X' in line and 'Y' in line:
             # X0  1722624 Y0  7126640
             rt_x.append(int(line.split()[1]))
             rt_y.append(int(line.split()[3]))
         elif len(line.split())==0:
-            wf.write('NAME "'+start_id+' '+stop_id+'"\n')
-            wf.write('INFO "'+start_id+' '+stop_id+'"\n'+text)
+            wf.write('NAME "'+name+'"\n')
+            wf.write('INFO "'+info+'"\n'+text)
             swe_x,swe_y = transform(rt_x,rt_y,fromProj=proj4Dict['RT9025gonV'],toProj=proj4Dict['SWEREF99TM'])
             for i in range(len(swe_x)):
                 wf.write('X'+str(i)+'  '+str(int(round(swe_x[i],0)))+' Y'+str(i)+'  '+str(int(round(swe_y[i],0)))+'\n')
