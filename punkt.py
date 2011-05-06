@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # Ett skript för att översätta punktkällorna från RT90 till SWEREF99
 # Det kräver att proj4 är installerat, mer exakt att cs2cs, som är ett 
 # verktyg som hör till proj4 är installerat.

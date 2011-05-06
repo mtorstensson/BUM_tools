@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # Ett skript för att hämta det som behövs från hirlam för att kunna köra BUM
 # på gimle utan att flytta ~1T data. Det kräver en pythonpath som inkluderar FOU:s 
 # pygrib och pydate. Det förutsätter också att kataloger på formen YYYYMM redan finns.
